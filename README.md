@@ -1,5 +1,5 @@
 # ASP.NET 5 Home
-Latest dev version: [![dev version](http://img.shields.io/myget/aspnetvnext/v/kre-clr-win-x86.svg?style=flat)](https://www.myget.org/gallery/aspnetvnext)<br>
+Latest dev version: [![dev version](http://img.shields.io/myget/aspnetvnext/v/dnx-clr-win-x86.svg?style=flat)](https://www.myget.org/gallery/aspnetvnext)<br>
 Latest master version: [![master version](http://img.shields.io/myget/aspnetmaster/v/kre-clr-win-x86.svg?style=flat)](https://www.myget.org/gallery/aspnetmaster)
 
 The Home repository is the starting point for people to learn about ASP.NET 5. This repo contains samples and [documentation](https://github.com/aspnet/Home/wiki) to help folks get started and learn more about what's coming in ASP.NET 5.
@@ -35,15 +35,17 @@ The easiest way to get started with ASP.NET 5 is to try out the latest preview o
 
 That said, you can also try out ASP.NET 5 with just a command-prompt and a text editor. The following instructions will walk you through getting your dev environment setup.
 
-### Install the K Version Manager (KVM)
+### Install the .NET Version Manager (DNVM)
 
-The first thing we need to do is setup the tools required to build and run an application. We will start out by getting the [K Version Manager (KVM)](https://github.com/aspnet/Home/wiki/version-manager). We use the K Version Manager to install different versions of the ASP.NET 5 runtime and switch between them.
+The first thing we need to do is setup the tools required to build and run an application. We will start out by getting the [.NET Version Manager (DNVM)](https://github.com/aspnet/Home/wiki/version-manager). We use the .NET Version Manager to install different versions of the DNX runtime that powers ASP.NET 5 and switch between them.
+
+**IMPORTANT**: `dnvm` was formerly known as `kvm`. If you are going to be working with the currently released preview version of ASP.NET 5 (Beta 3), you MUST use `kvm` as the two are NOT interoperable. So, working in `dev`? Use `dnvm`. Working in `master`? Use `kvm`.
 
 #### Windows
-To install KVM on Windows run the following command, which will download and run a script that installs KVM for the current user (requires admin privileges for Powershell).
+To install `dnvm` on Windows run the following command, which will download and run a script that installs `dnvm` for the current user (requires admin privileges for Powershell).
 
 ##### Stable(ish)
-This will use the currently released version of `kvm` (from the `release` branch of this repo).
+This will use the currently released version of `kvm` (from the `release` branch of this repo). NOTE: `dnvm` has not yet been merged to the stable master branch, so we're still using `kvm` here!
 
 ```
 @powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.ps1'))"
@@ -51,16 +53,19 @@ This will use the currently released version of `kvm` (from the `release` branch
 ```
 
 ##### Optimistic
-If you want to run on the bleeding edge and install the latest development version of KVM, run the following command:
+If you want to run on the bleeding edge and install the latest development version of `dnvm` and the DNX runtime, run the following command:
 
 ```
-@powershell -NoProfile -ExecutionPolicy unrestricted -Command "&{$Branch='dev';iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.ps1'))}"
+@powershell -NoProfile -ExecutionPolicy unrestricted -Command "&{$Branch='dev';iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1'))}"
 ```
 
-After the script has run open a new command prompt to start using KVM.
+After the script has run open a new command prompt to start using `dnvm`.
 
 #### OS X:
 
+NOTE: These instructions are for the `master` branch and `kvm` only. Using `dnvm` from the Dev branch is a more manual process listed below
+
+##### Stable(ish)
 To install KVM and the correct version of Mono on OS X using [Homebrew](http://brew.sh) follow the following steps: 
 
  * Install [Homebrew](http://brew.sh) if it is not already installed.
@@ -68,18 +73,21 @@ To install KVM and the correct version of Mono on OS X using [Homebrew](http://b
  * Run command `brew install kvm` to install KVM. This also automatically install the latest KRE package from https://www.nuget.org/api/v2 feed.
  * Run command `source kvm.sh` on your terminal if your terminal cannot understand kvm. 
 
+##### Optimistic
+If you want to run on the bleeding edge and install the latest development version of `dnvm`, download the `dnvm.sh` script from the `dev` branch of this repository and source it in your shell profile (~/.bashrc, ~/.zshrc, etc.).
+
 #### Linux:
 
-Installing KVM requires `curl`. Do verify if that is installed on the machine. Next install KVM on Linux run the following command:
+Installing `kvm` requires `curl`. Do verify if that is installed on the machine. Next install KVM on Linux run the following command:
 
 ```
 curl -sSL https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh | sh && source ~/.k/kvm/kvm.sh
 ```
 
-If you want to run on the bleeding edge and install the latest development version of KVM, use this command:
+If you want to run on the bleeding edge and install the latest development version of `dnvm`, use this command:
 
 ```
-curl -sSL https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh | KVM_BRANCH=dev sh && source ~/.k/kvm/kvm.sh
+curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DVM_BRANCH=dev sh && source ~/.dnx/bin/dnvm.sh
 ```
 
 Note that on Linux you need to also install [Mono](http://mono-project.com) 3.4.1 or later.
