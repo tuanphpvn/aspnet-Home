@@ -1,5 +1,5 @@
 param(
-        [Parameter(Mandatory=$true,Position=0)]
+        [Parameter(Position=0)]
         [ValidateSet('release','vnext','volatile')]
         $desiredFeed
     )
@@ -85,4 +85,6 @@ function Use-Feed{
     }
 }
 
-Use-Feed $desiredFeed
+if($desiredFeed){
+    Use-Feed $desiredFeed
+}
