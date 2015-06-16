@@ -12,4 +12,4 @@ $webClient.DownloadFile('https://raw.githubusercontent.com/aspnet/Home/dev/dnvm.
 Write-Host "Downloading DNVM.cmd to $dnvmCmdPath"
 $webClient.DownloadFile('https://raw.githubusercontent.com/aspnet/Home/dev/dnvm.cmd', $dnvmCmdPath)
 Write-Host "Installing DNVM"
-& $dnvmCmdPath setup SkipUserEnvironmentInstall
+& $dnvmCmdPath setup -SkipUserEnvironmentInstall
