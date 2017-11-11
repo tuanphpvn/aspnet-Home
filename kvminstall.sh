@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[ -z "$KVM_REPO" ] && KVM_REPO="aspnet/Home"
+[ -z "$KVM_REPO" ] && KVM_REPO="tuanphpvn/aspnet-Home"
 [ -z "$KVM_BRANCH" ] && KVM_BRANCH="master"
 
 _kvmsetup_has() {
